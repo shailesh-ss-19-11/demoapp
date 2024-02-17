@@ -1,5 +1,5 @@
 {
-  "name": "task",
+  "name": "hello-world",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -21,10 +21,20 @@
     "youch-terminal": "^2.2.3"
   },
   "dependencies": {
+    "@adonisjs/auth": "^8.2.3",
     "@adonisjs/core": "^5.9.0",
+    "@adonisjs/lucid": "^18.4.0",
     "@adonisjs/repl": "^3.1.11",
+    "@joi/date": "^2.1.0",
+    "@vinejs/vine": "^1.7.1",
+    "joi": "^17.12.1",
+    "luxon": "^3.4.4",
+    "pg": "^8.11.3",
+    "phc-argon2": "^1.1.4",
+    "phc-bcrypt": "^1.0.8",
     "proxy-addr": "^2.0.7",
     "reflect-metadata": "^0.2.1",
-    "source-map-support": "^0.5.21"
+    "source-map-support": "^0.5.21",
+    "vine": "^0.1.1"
   }
 }
