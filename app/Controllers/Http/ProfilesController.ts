@@ -19,7 +19,6 @@ export default class ProfilesController {
     }
 
     async updateprofile({ request, response, auth }: HttpContextContract) {
-        const token = request.header('Authorization').replace('Bearer ', '')
         await this.validation(request)
         try {
             const userdetails = await auth.use('api')
@@ -36,7 +35,6 @@ export default class ProfilesController {
     }
 
     async deleteprofile({ request, auth }: HttpContextContract) {
-        const token = request.header('Authorization').replace('Bearer ', '')
         try {
             const userdetails = await auth.use('api')
             const userId = userdetails?.user.id;
@@ -53,7 +51,6 @@ export default class ProfilesController {
     }
 
     async viewprofile({ request, auth }: HttpContextContract) {
-        const token = request.header('Authorization').replace('Bearer ', '')
         try {
             const userdetails = await auth.use('api')
             const userId = userdetails?.user.id;
@@ -95,9 +92,8 @@ export default class ProfilesController {
             ]),
         });
 
-        const validatedData = await request.validate({
+        await request.validate({
             schema: validationSchema,
         });
-        console.log(validatedData)
     }
 }

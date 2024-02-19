@@ -27,6 +27,7 @@ Route.get('/', async () => {
 Route.post('/login', 'AuthController.login')
 Route.post('/register', 'AuthController.register')
 
+
 Route.group(() => {
   Route.post('/logout', 'AuthController.logout')
   Route.post('/createprofile', 'ProfilesController.createprofile');
