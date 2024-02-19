@@ -1,9 +1,9 @@
-import { BaseSchema } from '@adonisjs/lucid/schema'
+import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
 export default class extends BaseSchema {
   protected tableName = 'profiles'
 
-  async up() {
+  public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
       table.string('name', 254)
@@ -11,12 +11,12 @@ export default class extends BaseSchema {
       table.string('gender', 254)
       table.string('dob', 254)
       table.integer('user_id')
-      table.timestamp('created_at')
-      table.timestamp('updated_at')
+      table.timestamp('created_at', { useTz: true })
+      table.timestamp('updated_at', { useTz: true })
     })
   }
 
-  async down() {
+  public async down() {
     this.schema.dropTable(this.tableName)
   }
 }

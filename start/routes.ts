@@ -1,46 +1,36 @@
 /*
 |--------------------------------------------------------------------------
-| Routes file
+| Routes
 |--------------------------------------------------------------------------
 |
-| The routes file is used for defining the HTTP routes.
+| This file is dedicated for defining HTTP routes. A single file is enough
+| for majority of projects, however you can define routes in different
+| files and just make sure to import them inside this file. For example
+|
+| Define routes in following two files
+| ├── start/routes/cart.ts
+| ├── start/routes/customer.ts
+|
+| and then import them inside `start/routes.ts` as follows
+|
+| import './routes/cart'
+| import './routes/customer'
 |
 */
 
-import router from '@adonisjs/core/services/router'
-import AuthController from '#controllers/auth_controller'
-import ProfilesController from '#controllers/profiles_controller'
-import { middleware } from '#start/kernel'
+import Route from '@ioc:Adonis/Core/Route'
 
-router.get('/', async () => {
-  return {
-    hello: 'world',
-  }
+Route.get('/', async () => {
+  return { hello: 'world' }
 })
 
+Route.post('/login', 'AuthController.login')
+Route.post('/register', 'AuthController.register')
 
-router.post('/register', [AuthController,"register"])
-router.post('/login', [AuthController,"login"])
-router.post('/logout', [AuthController,"logout"]).use(middleware.auth({
-  guards:['api']
-}))
-
-router.get('/user/viewProfile', [ProfilesController,"viewProfile"]).use(middleware.auth({
-  guards:['api']
-}))
-
-router.get('/user/viewProfile/:id', [ProfilesController,"viewSingleProfile"]).use(middleware.auth({
-  guards:['api']
-}))
-router.post('/user/createprofile', [ProfilesController,"createprofile"]).use(middleware.auth({
-  guards:['api']
-}))
-router.put('/user/updateProfile/:id', [ProfilesController,"updateProfile"]).use(middleware.auth({
-  guards:['api']
-}))
-router.delete('/user/deleteProfile', [ProfilesController,"deleteProfile"]).use(middleware.auth({
-  guards:['api']
-}))
-
-
-
+Route.group(() => {
+  Route.post('/logout', 'AuthController.logout')
+  Route.post('/createprofile', 'ProfilesController.createprofile');
+  Route.put('/updateprofile', 'ProfilesController.updateprofile');
+  Route.delete('/deleteprofile', 'ProfilesController.deleteprofile');
+  Route.get('/viewprofile', 'ProfilesController.viewprofile');
+}).middleware('auth');
