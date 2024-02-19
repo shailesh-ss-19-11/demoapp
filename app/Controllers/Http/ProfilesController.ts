@@ -55,6 +55,7 @@ export default class ProfilesController {
             const userdetails = await auth.use('api')
             const userId = userdetails?.user.id;
             let profileData = await Profile.query().where('user_id', userId)
+            
             if (profileData) {
                 return profileData.map((profile) => {
                     return {
