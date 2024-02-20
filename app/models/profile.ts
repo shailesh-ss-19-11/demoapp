@@ -5,19 +5,19 @@ export default class Profile extends BaseModel {
   @column({ isPrimary: true })
   public id: number
   
-  @column()
+  @column({ isPrimary: true })
   public user_id: number
 
-  @column()
+  @column({ isPrimary: true })
   public mobile: number
   
-  @column()
+  @column({ isPrimary: true })
   public name: number
 
-  @column()
+  @column({ isPrimary: true })
   public gender: number
 
-  @column()
+  @column({ isPrimary: true })
   public dob: number
 
   @column.dateTime({ autoCreate: true })
